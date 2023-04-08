@@ -23,7 +23,7 @@ public class PessoaMapping : IEntityTypeConfiguration<Pessoa>
         builder.Property(x => x.DataNascto).HasColumnName("dt_nascto");
         builder.Property(x => x.Tipo).HasColumnName("tipo");
         builder.Property(x => x.Referencia).HasColumnName("referencia");
-        builder.Property(x => x.CreatedAt).HasColumnName("dt_inclusao");
-        builder.Property(x => x.UpdatedAt).HasColumnName("dt_alteracao");
+        builder.Property(x => x.DataInclusao).HasColumnName("dt_inclusao");
+        builder.Property(x => x.DataAlteracao).HasColumnName("dt_alteracao");
     }
 }

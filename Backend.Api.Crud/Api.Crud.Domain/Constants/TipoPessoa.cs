@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Api.Crud.Domain.Contants;
+namespace Api.Crud.Domain.Constants;
 
 public static class TipoPessoa
 {

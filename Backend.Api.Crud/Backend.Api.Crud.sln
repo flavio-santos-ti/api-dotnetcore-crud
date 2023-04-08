@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33403.182
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Crud.App", "Api.Crud.App\Api.Crud.App.csproj", "{4DA73C47-198A-460D-8AF6-B50E9F329257}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.Crud.App", "Api.Crud.App\Api.Crud.App.csproj", "{4DA73C47-198A-460D-8AF6-B50E9F329257}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Crud.Domain", "Api.Crud.Domain\Api.Crud.Domain.csproj", "{79CD4762-8819-44E5-89D3-7083BB00D9EB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.Crud.Domain", "Api.Crud.Domain\Api.Crud.Domain.csproj", "{79CD4762-8819-44E5-89D3-7083BB00D9EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Crud.Business", "Api.Crud.Business\Api.Crud.Business.csproj", "{BBE24D94-1FF4-499D-BC7F-97CE6AE5D445}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.Crud.Business", "Api.Crud.Business\Api.Crud.Business.csproj", "{BBE24D94-1FF4-499D-BC7F-97CE6AE5D445}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Crud.Infra.Data", "Api.Crud.Infra.Data\Api.Crud.Infra.Data.csproj", "{1F5BF6DD-2A38-4FFB-BFDF-14A8E0C736DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.Crud.Infra.Data", "Api.Crud.Infra.Data\Api.Crud.Infra.Data.csproj", "{1F5BF6DD-2A38-4FFB-BFDF-14A8E0C736DC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "[01] - Application", "[01] - Application", "{F5253071-2D1E-4B6F-8F1C-2B56886E79E5}"
 EndProject

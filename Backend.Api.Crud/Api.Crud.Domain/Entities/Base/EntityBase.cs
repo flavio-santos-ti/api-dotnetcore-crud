@@ -9,6 +9,6 @@ namespace Api.Crud.Domain.Entities.Base;
 public class EntityBase
 {
     public long Id { get; set; }
-    public DateTime CreatedAt { get; set; }
-    public DateTime UpdatedAt { get; set;}
+    public DateTime DataInclusao { get; set; }
+    public DateTime DataAlteracao { get; set;}
 }

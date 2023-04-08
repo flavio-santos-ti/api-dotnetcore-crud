@@ -20,7 +20,7 @@ public class UsuarioMapping : IEntityTypeConfiguration<Usuario>
         builder.Property(x => x.Id).HasColumnName("id");
         builder.Property(x => x.Login).HasColumnName("login");
         builder.Property(x => x.Senha).HasColumnName("senha");
-        builder.Property(x => x.CreatedAt).HasColumnName("dt_inclusao");
-        builder.Property(x => x.UpdatedAt).HasColumnName("dt_alteracao");
+        builder.Property(x => x.DataInclusao).HasColumnName("dt_inclusao");
+        builder.Property(x => x.DataAlteracao).HasColumnName("dt_alteracao");
     }
 }
