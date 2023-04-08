@@ -15,23 +15,11 @@ public class PessoaRepository : RepositoryBase, IPessoaRepository
     {
     }
 
-    public async Task<Pessoa> AAddAsync(Pessoa newPessoa)
-    {
-        return await base.AddAsync<Pessoa>(newPessoa);
-    }
+    public async Task<Pessoa> AAddAsync(Pessoa newPessoa) => await base.AddAsync<Pessoa>(newPessoa);
 
-    public async Task<Pessoa> UpdateAsync(Pessoa pessoa)
-    {
-        return await base.UpdateAsync<Pessoa>(pessoa);
-    }
+    public async Task<Pessoa> UpdateAsync(Pessoa pessoa) => await base.UpdateAsync<Pessoa>(pessoa);
 
-    public async Task DeleteAsync(Pessoa pessoa)
-    {
-        await base.DeleteAsync<Pessoa>(pessoa);
-    }
+    public async Task DeleteAsync(Pessoa pessoa) => await base.DeleteAsync<Pessoa>(pessoa);
 
-    public async Task<Pessoa> GetAsync(Expression<Func<Pessoa, bool>> condicao)
-    {
-        return await base.GetAsync<Pessoa>(condicao);
-    }
+    public async Task<Pessoa> GetAsync(Expression<Func<Pessoa, bool>> condicao) => await base.GetAsync<Pessoa>(condicao);
 }
