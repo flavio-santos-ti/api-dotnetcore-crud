@@ -11,9 +11,7 @@ namespace Api.Crud.Infra.Data.Repositories;
 
 public class PessoaRepository : RepositoryBase, IPessoaRepository
 {
-    public PessoaRepository(DatabaseContext context) : base(context)
-    {
-    }
+    public PessoaRepository(DatabaseContext context) : base(context) { }
 
     public async Task<Pessoa> AAddAsync(Pessoa newPessoa) => await base.AddAsync<Pessoa>(newPessoa);
 
