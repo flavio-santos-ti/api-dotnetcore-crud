@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Api.Crud.Domain\Api.Crud.Domain.csproj" />
     <ProjectReference Include="..\Api.Crud.Infra.Data\Api.Crud.Infra.Data.csproj" />
   </ItemGroup>
