@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Api.Crud.Domain.Entities;
 
-public class Pessoa : EntityBase
+public class Pessoa : EntityBase 
 {
     public string Nome { get; set; }
     public string Sobrenome { get; set; }

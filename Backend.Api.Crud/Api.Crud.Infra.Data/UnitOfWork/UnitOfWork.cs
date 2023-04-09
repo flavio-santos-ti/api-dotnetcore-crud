@@ -1,23 +1,22 @@
 ﻿using Api.Crud.Infra.Data.Context;
 using Api.Crud.Infra.Data.Interfaces;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Api.Crud.Infra.Data.UnitOfWork;
 
 public class UnitOfWork : IUnitOfWork
 {
     private readonly DatabaseContext _context;
+    private IDbContextTransaction _transaction;
 
-    public UnitOfWork(DatabaseContext context)
-    {
-        _context = context;
-    }
-    public async Task<int> CommitAsync()
-    {
-        return await _context.SaveChangesAsync();
-    }
+    public UnitOfWork(DatabaseContext context) => _context = context;
 
-    public async Task RolbackAsync()
-    {
-        await Task.CompletedTask;
-    }
+    public async Task BeginTransactionAsync() => _transaction = await _context.Database.BeginTransactionAsync();
+
+    public async Task CommitAsync() => await _transaction.CommitAsync();
+
+    public async Task RolbackAsync() => await _transaction.RollbackAsync();
+
+    public async Task<int> SaveAsync() => await _context.SaveChangesAsync();
 }

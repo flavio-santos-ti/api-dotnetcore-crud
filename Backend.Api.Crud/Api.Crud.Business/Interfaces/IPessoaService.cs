@@ -6,12 +6,10 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Api.Crud.Infra.Data.Interfaces;
+namespace Api.Crud.Business.Interfaces;
 
-public interface IPessoaRepository
+public interface IPessoaService
 {
-    Task AddAsync(Pessoa newPessoa);
-    Task<Pessoa> UpdateAsync(Pessoa pessoa);
-    Task DeleteAsync(Pessoa pessoa);
+    Task AddAsync(Pessoa dados);
     Task<Pessoa> GetAsync(Expression<Func<Pessoa, bool>> condicao);
 }

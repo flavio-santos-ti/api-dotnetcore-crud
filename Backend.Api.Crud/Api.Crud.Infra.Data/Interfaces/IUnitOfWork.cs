@@ -8,6 +8,8 @@ namespace Api.Crud.Infra.Data.Interfaces;
 
 public interface IUnitOfWork
 {
-    Task<int> CommitAsync();
+    Task BeginTransactionAsync();
+    Task CommitAsync();
     Task RolbackAsync();
+    Task<int> SaveAsync();
 }

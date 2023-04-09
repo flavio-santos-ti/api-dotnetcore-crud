@@ -8,17 +8,9 @@ public class RepositoryBase
 {
     private readonly DatabaseContext _context;
 
-    public RepositoryBase(DatabaseContext context)
-    {
-        _context = context;
-    }
+    public RepositoryBase(DatabaseContext context) => _context = context;
 
-    protected async Task<T> AddAsync<T>(T dados) where T : class
-    {
-        await _context.Set<T>().AddAsync(dados);
-
-        return dados;
-    }
+    protected async Task AddAsync<T>(T dados) where T : class => await _context.Set<T>().AddAsync(dados);
 
     protected async Task<T> UpdateAsync<T>(T dados) where T : class
     {
@@ -40,5 +32,10 @@ public class RepositoryBase
     protected async Task<ICollection<T>> GetAllAsync<T>(Expression<Func<T, bool>> condicao) where T : class
     {
         return await _context.Set<T>().Where(condicao).AsNoTracking().ToListAsync();
+    }
+
+    protected DatabaseContext GetContext()
+    {
+        return _context;
     }
 }

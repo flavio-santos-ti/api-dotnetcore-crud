@@ -13,7 +13,7 @@ public class PessoaRepository : RepositoryBase, IPessoaRepository
 {
     public PessoaRepository(DatabaseContext context) : base(context) { }
 
-    public async Task<Pessoa> AAddAsync(Pessoa newPessoa) => await base.AddAsync<Pessoa>(newPessoa);
+    public async Task AddAsync(Pessoa newPessoa) => await base.AddAsync<Pessoa>(newPessoa);
 
     public async Task<Pessoa> UpdateAsync(Pessoa pessoa) => await base.UpdateAsync<Pessoa>(pessoa);
 

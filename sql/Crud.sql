@@ -29,7 +29,10 @@ CREATE TABLE IF NOT EXISTS public.usuario
 	senha CHARACTER VARYING(100) NOT NULL, 
 	dt_inclusao TIMESTAMP NOT NULL,
 	dt_alteracao TIMESTAMP NOT NULL,
-	CONSTRAINT pk_usuario PRIMARY KEY(id)
+	CONSTRAINT pk_usuario PRIMARY KEY(id),
+	CONSTRAINT fk_usuario_pessoa FOREIGN KEY (id) REFERENCES public.pessoa(id)
 ); 
+
+CREATE UNIQUE INDEX idx_usuario_chave ON public.usuario(login);
 
 
