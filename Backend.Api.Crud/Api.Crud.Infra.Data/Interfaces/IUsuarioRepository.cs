@@ -1,4 +1,5 @@
 ﻿using Api.Crud.Domain.Entities;
+using Api.Crud.Domain.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,8 +11,9 @@ namespace Api.Crud.Infra.Data.Interfaces;
 
 public interface IUsuarioRepository
 {
-    Task<Usuario> AAddAsync(Usuario newUsuario);
+    Task AddAsync(Usuario newUsuario);
     Task<Usuario> UpdateAsync(Usuario usuario);
     Task DeleteAsync(Usuario usuario);
     Task<Usuario> GetAsync(Expression<Func<Usuario, bool>> condicao);
+    Task<UsuarioView> GetViewAsync(long id);
 }
