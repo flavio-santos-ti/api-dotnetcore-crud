@@ -5,13 +5,7 @@ using Api.Crud.Domain.Entities;
 using Api.Crud.Domain.Result;
 using Api.Crud.Domain.View;
 using Api.Crud.Infra.Data.Interfaces;
-using Api.Crud.Infra.Data.Repositories;
 using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Api.Crud.Business.Services;
 
@@ -30,7 +24,7 @@ public class UsuarioService : ServiceBase, IUsuarioService
         _usuarioRepository = usuarioRepository;
     }
 
-    public async Task<Result<Usuario>> AddAsync(UsuarioCreate dados)
+    public async Task<Result<UsuarioView>> AddAsync(UsuarioCreate dados)
     {
         long newId = 0;
 
@@ -46,12 +40,14 @@ public class UsuarioService : ServiceBase, IUsuarioService
             newId = newPessoa.Id;
         }
         
-        var usuario = await _usuarioRepository.GetAsync(b => b.Login == dados.Login);
-
-        Usuario newUsuario = _mapper.Map<Usuario>(dados);
+        var usuario = await _usuarioRepository.GetAsync(b => b.Login == dados.Login.Trim());
+          
         if (usuario == null)
         {
+            Usuario newUsuario = new();
             newUsuario.Id = newId;
+            newUsuario.Login = dados.Login.Trim();
+            newUsuario.Senha= dados.Senha;
             newUsuario.DataInclusao = DateTime.Now;
             newUsuario.DataAlteracao = DateTime.Now;
             await _usuarioRepository.AddAsync(newUsuario);
@@ -60,8 +56,8 @@ public class UsuarioService : ServiceBase, IUsuarioService
 
         await _unitOfWork.CommitAsync();
 
-        //var usuarioView = _usuarioRepository.Get
+        var usuarioView = await _usuarioRepository.GetViewAsync(newId);
 
-        return base.Successed<Usuario>(newUsuario);
+        return base.SuccessedAdd<UsuarioView>(usuarioView, "Usuário");
     }
 }

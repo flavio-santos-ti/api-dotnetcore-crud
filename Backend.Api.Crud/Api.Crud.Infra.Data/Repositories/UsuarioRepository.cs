@@ -40,7 +40,7 @@ public class UsuarioRepository : RepositoryBase, IUsuarioRepository
                 Nome = pessoa.Nome,
                 Sobrenome = pessoa.Sobrenome,
                 DataNascto = pessoa.DataNascto,
-                Tipo = pessoa.Tipo,
+                Tipo = pessoa.Tipo == "F" ? "Física" : "Jurídica",
                 Login = usuario.Login,
                 DataInclusao = usuario.DataInclusao,
                 DataAlteracao= usuario.DataAlteracao

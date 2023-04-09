@@ -1,6 +1,7 @@
 ﻿using Api.Crud.Domain.Create;
 using Api.Crud.Domain.Entities;
 using Api.Crud.Domain.Result;
+using Api.Crud.Domain.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +12,5 @@ namespace Api.Crud.Business.Interfaces;
 
 public interface IUsuarioService
 {
-    Task<Result<Usuario>> AddAsync(UsuarioCreate dados);
+    Task<Result<UsuarioView>> AddAsync(UsuarioCreate dados);
 }

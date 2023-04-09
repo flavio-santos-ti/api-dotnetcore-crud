@@ -13,11 +13,12 @@ public class ServiceBase
     {
     }
 
-    public Result<T> Successed<T>(T dados) where T : class
+    public Result<T> SuccessedAdd<T>(T dados, string name) where T : class
     {
         var result = new Result<T>();
         result.Successed = true;
-        result.Message = dados.GetType().Name;
+        result.Name = name;
+        result.Message = name + " adicionado com sucesso.";
         result.Data = dados;
         return result;
     }
