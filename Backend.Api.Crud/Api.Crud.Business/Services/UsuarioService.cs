@@ -6,6 +6,7 @@ using Api.Crud.Domain.Result;
 using Api.Crud.Domain.View;
 using Api.Crud.Infra.Data.Interfaces;
 using AutoMapper;
+using BC = BCrypt.Net.BCrypt;
 
 namespace Api.Crud.Business.Services;
 
@@ -47,7 +48,7 @@ public class UsuarioService : ServiceBase, IUsuarioService
             Usuario newUsuario = new();
             newUsuario.Id = newId;
             newUsuario.Login = dados.Login.Trim();
-            newUsuario.Senha= dados.Senha;
+            newUsuario.Senha = BC.HashPassword(dados.Senha); 
             newUsuario.DataInclusao = DateTime.Now;
             newUsuario.DataAlteracao = DateTime.Now;
             await _usuarioRepository.AddAsync(newUsuario);
