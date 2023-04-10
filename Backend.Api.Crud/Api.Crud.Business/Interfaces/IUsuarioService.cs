@@ -12,5 +12,5 @@ namespace Api.Crud.Business.Interfaces;
 
 public interface IUsuarioService
 {
-    Task<Result<UsuarioView>> AddAsync(UsuarioCreate dados);
+    Task<object> AddAsync(UsuarioCreate dados);
 }

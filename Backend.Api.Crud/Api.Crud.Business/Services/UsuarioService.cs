@@ -6,6 +6,8 @@ using Api.Crud.Domain.Result;
 using Api.Crud.Domain.View;
 using Api.Crud.Infra.Data.Interfaces;
 using AutoMapper;
+using FluentValidation;
+using FluentValidation.Results;
 using BC = BCrypt.Net.BCrypt;
 
 namespace Api.Crud.Business.Services;
@@ -16,18 +18,27 @@ public class UsuarioService : ServiceBase, IUsuarioService
     private readonly IMapper _mapper;
     private readonly IUnitOfWork _unitOfWork;
     private readonly IUsuarioRepository _usuarioRepository;
+    private readonly IValidator<UsuarioCreate> _validatorCreate;
 
-    public UsuarioService(IPessoaService pessoaService, IMapper mapper, IUnitOfWork unitOfWork, IUsuarioRepository usuarioRepository)
+    public UsuarioService(IPessoaService pessoaService, IMapper mapper, IUnitOfWork unitOfWork, IUsuarioRepository usuarioRepository, IValidator<UsuarioCreate> validatorCreate)
     {
         _pessoaService = pessoaService;
         _mapper = mapper;
         _unitOfWork = unitOfWork;
         _usuarioRepository = usuarioRepository;
+        _validatorCreate = validatorCreate;
     }
 
-    public async Task<Result<UsuarioView>> AddAsync(UsuarioCreate dados)
+    public async Task<object> AddAsync(UsuarioCreate dados) 
     {
         long newId = 0;
+
+        ValidationResult result = await _validatorCreate.ValidateAsync(dados);
+
+        if (!result.IsValid)
+        {
+            return base.ErrorValidationAdd(result, "Usuário"); 
+        }
 
         await _unitOfWork.BeginTransactionAsync();
 
@@ -59,6 +70,6 @@ public class UsuarioService : ServiceBase, IUsuarioService
 
         var usuarioView = await _usuarioRepository.GetViewAsync(newId);
 
-        return base.SuccessedAdd<UsuarioView>(usuarioView, "Usuário");
+        return base.SuccessedAdd(usuarioView, "Usuário");
     }
 }
