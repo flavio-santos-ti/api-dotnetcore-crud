@@ -25,6 +25,26 @@ public class ServiceBase
         return result;
     }
 
+    protected ServiceResult SuccessedUpdate(object dados, string name)
+    {
+        var result = new ServiceResult();
+        result.Successed = true;
+        result.Name = name;
+        result.Message = name + " alterado com sucesso.";
+        result.Data = dados;
+        return result;
+    }
+
+    protected ServiceResult SuccessedDelete(string name)
+    {
+        var result = new ServiceResult();
+        result.Successed = true;
+        result.Name = name;
+        result.Message = name + " excluído com sucesso.";
+        result.Data = null;
+        return result;
+    }
+
     protected ServiceResult SuccessedViewAll(object dados, string name, int count)
     {
         string message = $"{count} registro(s) encontrado(s).";

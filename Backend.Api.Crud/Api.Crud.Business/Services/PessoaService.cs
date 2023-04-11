@@ -40,6 +40,9 @@ public class PessoaService : IPessoaService
         await _pessoaRepository.UpdateAsync(dados);
     }
 
+    public async Task DeleteAsync(Pessoa dados) => await _pessoaRepository.DeleteAsync(dados);
+
     public async Task<Pessoa> GetAsync(Expression<Func<Pessoa, bool>> condicao) => await _pessoaRepository.GetAsync(condicao);
+
 
 }

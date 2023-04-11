@@ -81,13 +81,6 @@ public class UsuarioService : ServiceBase, IUsuarioService
         return base.SuccessedAdd(usuarioView, "Usuário");
     }
 
-    public async Task<ServiceResult> GetViewAllAsync(int skip, int take)
-    {
-        var usuarios = await _usuarioRepository.GetViewAllAsync(skip, take);
-        
-        return base.SuccessedViewAll(usuarios, "Usuário", usuarios.Count());
-    }
-
     public async Task<ServiceResult> UpdateAsync(UpdateUsuario dados)
     {
         ValidationResult result = await _validatorUpdate.ValidateAsync(dados);
@@ -105,7 +98,7 @@ public class UsuarioService : ServiceBase, IUsuarioService
         {
             return base.ErrorAdd($"Usuário não encontrado.", "Usuário");
         }
-        
+
         Pessoa updatePessoa = _mapper.Map<Pessoa>(pessoa);
         updatePessoa.Nome = dados.Nome.Trim();
         updatePessoa.Sobrenome = dados.Sobrenome.Trim();
@@ -129,6 +122,50 @@ public class UsuarioService : ServiceBase, IUsuarioService
 
         var usuarioView = await _usuarioRepository.GetViewAsync(dados.Id);
 
-        return base.SuccessedAdd(usuarioView, "Usuário");
+        return base.SuccessedUpdate(usuarioView, "Usuário");
     }
+
+    public async Task<ServiceResult> DeleteAsync(long id)
+    {
+        if (id == 0)
+        {
+            return base.ErrorAdd($"Id Inválido.", "Usuário");
+        }
+
+        await _unitOfWork.BeginTransactionAsync();
+
+        var usuario = await _usuarioRepository.GetAsync(b => b.Id == id);
+
+        if (usuario == null)
+        {
+            return base.ErrorAdd($"Usuário não encontrado.", "Usuário");
+        }
+
+        await _usuarioRepository.DeleteAsync(usuario);
+        await _unitOfWork.SaveAsync();
+
+        var pessoa = await _pessoaService.GetAsync(b => b.Id == id);
+
+        if (pessoa == null)
+        {
+            return base.ErrorAdd($"Usuário não encontrado.", "Usuário");
+        }
+
+        if (pessoa.Referencia == 1)
+        {
+            await _pessoaService.DeleteAsync(pessoa);
+            await _unitOfWork.SaveAsync();
+        }
+
+        await _unitOfWork.CommitAsync();
+
+        return base.SuccessedDelete("Usuário");
+    }
+    public async Task<ServiceResult> GetViewAllAsync(int skip, int take)
+    {
+        var usuarios = await _usuarioRepository.GetViewAllAsync(skip, take);
+        
+        return base.SuccessedViewAll(usuarios, "Usuário", usuarios.Count());
+    }
+
 }

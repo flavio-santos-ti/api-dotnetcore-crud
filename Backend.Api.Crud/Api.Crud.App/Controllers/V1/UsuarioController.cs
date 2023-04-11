@@ -40,4 +40,11 @@ public class UsuarioController : ControllerBase
         return (!usuario.Successed) ? BadRequest(usuario) : Ok(usuario);
     }
 
+    [HttpDelete]
+    public async Task<IActionResult> DeleteAsync([FromQuery] long id)
+    {
+        var usuario = await _service.DeleteAsync(id);
+
+        return (!usuario.Successed) ? BadRequest(usuario) : Ok(usuario);
+    }
 }
