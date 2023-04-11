@@ -12,4 +12,5 @@ public interface IUnitOfWork
     Task CommitAsync();
     Task RolbackAsync();
     Task<int> SaveAsync();
+    string GetTokenSecret();
 }

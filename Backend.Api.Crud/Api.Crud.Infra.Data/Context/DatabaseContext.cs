@@ -34,4 +34,9 @@ public class DatabaseContext : DbContext
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
     }
 
+    public IConfiguration GetConfiguration()
+    {
+        return _configuration;
+    }
+
 }

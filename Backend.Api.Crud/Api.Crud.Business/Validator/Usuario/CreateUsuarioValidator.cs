@@ -8,9 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 namespace Api.Crud.Business.Validator.Usuario;
 
-public class ValidatorUsuarioCreate : AbstractValidator<CreateUsuario>
+public class CreateUsuarioValidator : AbstractValidator<CreateUsuario>
 {
-    public ValidatorUsuarioCreate()
+    public CreateUsuarioValidator()
     {
         RuleFor(x => x.Nome)
             .NotNull().WithMessage("Faltando.")

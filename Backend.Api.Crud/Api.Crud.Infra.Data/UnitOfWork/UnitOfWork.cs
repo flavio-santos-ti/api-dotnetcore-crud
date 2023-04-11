@@ -2,6 +2,8 @@
 using Api.Crud.Infra.Data.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Api.Crud.Infra.Data.UnitOfWork;
 
@@ -19,4 +21,10 @@ public class UnitOfWork : IUnitOfWork
     public async Task RolbackAsync() => await _transaction.RollbackAsync();
 
     public async Task<int> SaveAsync() => await _context.SaveChangesAsync();
+
+    public string GetTokenSecret()
+    {
+        var configuration = _context.GetConfiguration();
+        return configuration.GetSection("TokenConfiguration").GetValue<string>("TokenSecret");
+    }
 }

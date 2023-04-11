@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Api.Crud.Business.Validator.Usuario;
 
-public class ValidatorUsuarioUpdate : AbstractValidator<UpdateUsuario>
+public class UpdateUsuarioValidator : AbstractValidator<UpdateUsuario>
 {
-    public ValidatorUsuarioUpdate()
+    public UpdateUsuarioValidator()
     {
         RuleFor(x => x.Id)
             .NotNull().WithMessage("Faltando.")
