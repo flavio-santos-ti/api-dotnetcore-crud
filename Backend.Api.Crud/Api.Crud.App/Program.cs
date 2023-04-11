@@ -1,6 +1,5 @@
 using Api.Crud.Business.Interfaces;
 using Api.Crud.Business.Services;
-using Api.Crud.Domain.Create;
 using Api.Crud.Infra.Data.Context;
 using Api.Crud.Infra.Data.Interfaces;
 using Api.Crud.Infra.Data.Repositories;

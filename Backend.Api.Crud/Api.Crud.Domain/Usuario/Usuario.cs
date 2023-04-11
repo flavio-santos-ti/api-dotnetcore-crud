@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Api.Crud.Domain.Entities;
+namespace Api.Crud.Domain.Usuario;
 
 public class Usuario : EntityBase
 {

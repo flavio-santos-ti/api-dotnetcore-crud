@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Api.Crud.Domain.View;
+namespace Api.Crud.Domain.Usuario.View;
 
 public class UsuarioView
 {

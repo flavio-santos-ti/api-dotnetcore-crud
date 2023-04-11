@@ -1,5 +1,5 @@
 ﻿using Api.Crud.Business.Interfaces;
-using Api.Crud.Domain.Entities;
+using Api.Crud.Domain.Pessoa;
 using Api.Crud.Infra.Data.Interfaces;
 using Api.Crud.Infra.Data.Repositories;
 using AutoMapper;

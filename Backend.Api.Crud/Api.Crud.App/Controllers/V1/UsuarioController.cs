@@ -1,5 +1,5 @@
 ﻿using Api.Crud.Business.Interfaces;
-using Api.Crud.Domain.Create;
+using Api.Crud.Domain.Usuario.Create;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Crud.App.Controllers.V1;

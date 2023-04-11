@@ -1,9 +1,9 @@
 ﻿using Api.Crud.Business.Interfaces;
 using Api.Crud.Business.Services.Base;
-using Api.Crud.Domain.Create;
-using Api.Crud.Domain.Entities;
-using Api.Crud.Domain.Result;
-using Api.Crud.Domain.View;
+using Api.Crud.Domain.Pessoa;
+using Api.Crud.Domain.Result.Service;
+using Api.Crud.Domain.Usuario;
+using Api.Crud.Domain.Usuario.Create;
 using Api.Crud.Infra.Data.Interfaces;
 using AutoMapper;
 using FluentValidation;

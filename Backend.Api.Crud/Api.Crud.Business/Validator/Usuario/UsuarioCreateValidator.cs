@@ -1,5 +1,5 @@
-﻿using Api.Crud.Domain.Create;
-using Api.Crud.Domain.Entities;
+﻿using Api.Crud.Domain.Entities;
+using Api.Crud.Domain.Usuario.Create;
 using FluentValidation;
 using System;
 using System.Collections.Generic;

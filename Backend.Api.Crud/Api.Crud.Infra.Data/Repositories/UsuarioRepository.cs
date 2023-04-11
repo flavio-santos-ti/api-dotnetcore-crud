@@ -1,5 +1,5 @@
-﻿using Api.Crud.Domain.Entities;
-using Api.Crud.Domain.View;
+﻿using Api.Crud.Domain.Usuario;
+using Api.Crud.Domain.Usuario.View;
 using Api.Crud.Infra.Data.Context;
 using Api.Crud.Infra.Data.Interfaces;
 using Api.Crud.Infra.Data.Repositories.Base;

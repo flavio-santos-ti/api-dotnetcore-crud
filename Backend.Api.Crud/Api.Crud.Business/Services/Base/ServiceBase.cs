@@ -1,4 +1,5 @@
-﻿using Api.Crud.Domain.Result;
+﻿using Api.Crud.Domain.Result.Service;
+using Api.Crud.Domain.Result.Service.Validation;
 using FluentValidation.Results;
 using System;
 using System.Collections.Generic;

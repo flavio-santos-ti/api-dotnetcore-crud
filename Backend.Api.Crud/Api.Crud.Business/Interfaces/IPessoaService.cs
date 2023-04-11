@@ -1,4 +1,4 @@
-﻿using Api.Crud.Domain.Entities;
+﻿using Api.Crud.Domain.Pessoa;
 using System;
 using System.Collections.Generic;
 using System.Linq;

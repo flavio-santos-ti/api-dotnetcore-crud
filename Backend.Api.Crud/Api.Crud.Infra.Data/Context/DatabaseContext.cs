@@ -1,4 +1,5 @@
-﻿using Api.Crud.Domain.Entities;
+﻿using Api.Crud.Domain.Pessoa;
+using Api.Crud.Domain.Usuario;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;

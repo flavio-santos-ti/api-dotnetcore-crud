@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Api.Crud.Domain.Result;
+namespace Api.Crud.Domain.Result.Service.Validation;
 
 public class ServiceValidationResult
 {

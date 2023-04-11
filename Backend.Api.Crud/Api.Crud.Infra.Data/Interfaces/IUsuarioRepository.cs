@@ -1,5 +1,5 @@
-﻿using Api.Crud.Domain.Entities;
-using Api.Crud.Domain.View;
+﻿using Api.Crud.Domain.Usuario;
+using Api.Crud.Domain.Usuario.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;

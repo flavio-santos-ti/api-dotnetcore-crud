@@ -1,4 +1,4 @@
-﻿using Api.Crud.Domain.Entities;
+﻿using Api.Crud.Domain.Pessoa;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
