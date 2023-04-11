@@ -1,5 +1,4 @@
 ﻿using Api.Crud.Domain.Usuario;
-using Api.Crud.Domain.Usuario.View;
 using Api.Crud.Infra.Data.Context;
 using Api.Crud.Infra.Data.Interfaces;
 using Api.Crud.Infra.Data.Repositories.Base;
@@ -26,7 +25,7 @@ public class UsuarioRepository : RepositoryBase, IUsuarioRepository
 
     public async Task<Usuario> GetAsync(Expression<Func<Usuario, bool>> condicao) => await base.GetAsync<Usuario>(condicao);
 
-    public async Task<UsuarioView> GetViewAsync(long id)
+    public async Task<ViewUsuario> GetViewAsync(long id)
     {
         DatabaseContext context = base.GetContext();
 
@@ -34,7 +33,7 @@ public class UsuarioRepository : RepositoryBase, IUsuarioRepository
             from usuario in context.Usuarios
             join pessoa in context.Pessoas on usuario.Id equals pessoa.Id
             where pessoa.Id == id
-            select new UsuarioView
+            select new ViewUsuario
             {
                 Id = usuario.Id,
                 Nome = pessoa.Nome,
@@ -50,14 +49,14 @@ public class UsuarioRepository : RepositoryBase, IUsuarioRepository
         return usuarioView;
     }
 
-    public async Task<IEnumerable<UsuarioView>> GetViewAllAsync(int skip, int take)
+    public async Task<IEnumerable<ViewUsuario>> GetViewAllAsync(int skip, int take)
     {
         DatabaseContext context = base.GetContext();
 
         var usuarioView = await(
             from usuario in context.Usuarios
             join pessoa in context.Pessoas on usuario.Id equals pessoa.Id
-            select new UsuarioView
+            select new ViewUsuario
             {
                 Id = usuario.Id,
                 Nome = pessoa.Nome,

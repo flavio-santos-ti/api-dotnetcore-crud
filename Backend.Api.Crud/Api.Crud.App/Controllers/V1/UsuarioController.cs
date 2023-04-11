@@ -1,5 +1,5 @@
 ﻿using Api.Crud.Business.Interfaces;
-using Api.Crud.Domain.Usuario.Create;
+using Api.Crud.Domain.Usuario;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Crud.App.Controllers.V1;
@@ -17,7 +17,7 @@ public class UsuarioController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> AddAsync(UsuarioCreate dados)
+    public async Task<IActionResult> AddAsync(CreateUsuario dados)
     {
         var usuario = await _service.AddAsync(dados);
         

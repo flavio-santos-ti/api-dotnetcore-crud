@@ -1,10 +1,10 @@
 ﻿using Api.Crud.Domain.Result.Service;
-using Api.Crud.Domain.Usuario.Create;
+using Api.Crud.Domain.Usuario;
 
 namespace Api.Crud.Business.Interfaces;
 
 public interface IUsuarioService
 {
-    Task<ServiceResult> AddAsync(UsuarioCreate dados);
+    Task<ServiceResult> AddAsync(CreateUsuario dados);
     Task<ServiceResult> GetViewAllAsync(int skip, int take);
 }

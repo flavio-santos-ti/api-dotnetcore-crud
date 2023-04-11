@@ -1,5 +1,4 @@
 ﻿using Api.Crud.Domain.Usuario;
-using Api.Crud.Domain.Usuario.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +14,6 @@ public interface IUsuarioRepository
     Task<Usuario> UpdateAsync(Usuario usuario);
     Task DeleteAsync(Usuario usuario);
     Task<Usuario> GetAsync(Expression<Func<Usuario, bool>> condicao);
-    Task<UsuarioView> GetViewAsync(long id);
-    Task<IEnumerable<UsuarioView>> GetViewAllAsync(int skip, int take);
+    Task<ViewUsuario> GetViewAsync(long id);
+    Task<IEnumerable<ViewUsuario>> GetViewAllAsync(int skip, int take);
 }

@@ -4,11 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Api.Crud.Domain.Usuario.Update;
+namespace Api.Crud.Domain.Usuario;
 
-public class UsuarioUpdate
+public class CreateUsuario
 {
     public string Nome { get; set; }
     public string Sobrenome { get; set; }
     public DateTime DataNascto { get; set; }
+    public string Login { get; set; }
+    public string Senha { get; set; }
 }

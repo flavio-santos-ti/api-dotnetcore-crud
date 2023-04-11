@@ -39,7 +39,7 @@ builder.Services.AddApiVersioning(p =>
     p.AssumeDefaultVersionWhenUnspecified = true;
 });
 
-builder.Services.AddValidatorsFromAssemblyContaining<UsuarioCreateValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<ValidatorUsuarioCreate>();
 
 //--------------------------------------------
 

@@ -3,7 +3,6 @@ using Api.Crud.Business.Services.Base;
 using Api.Crud.Domain.Pessoa;
 using Api.Crud.Domain.Result.Service;
 using Api.Crud.Domain.Usuario;
-using Api.Crud.Domain.Usuario.Create;
 using Api.Crud.Infra.Data.Interfaces;
 using AutoMapper;
 using FluentValidation;
@@ -18,9 +17,9 @@ public class UsuarioService : ServiceBase, IUsuarioService
     private readonly IMapper _mapper;
     private readonly IUnitOfWork _unitOfWork;
     private readonly IUsuarioRepository _usuarioRepository;
-    private readonly IValidator<UsuarioCreate> _validatorCreate;
+    private readonly IValidator<CreateUsuario> _validatorCreate;
 
-    public UsuarioService(IPessoaService pessoaService, IMapper mapper, IUnitOfWork unitOfWork, IUsuarioRepository usuarioRepository, IValidator<UsuarioCreate> validatorCreate)
+    public UsuarioService(IPessoaService pessoaService, IMapper mapper, IUnitOfWork unitOfWork, IUsuarioRepository usuarioRepository, IValidator<CreateUsuario> validatorCreate)
     {
         _pessoaService = pessoaService;
         _mapper = mapper;
@@ -29,7 +28,7 @@ public class UsuarioService : ServiceBase, IUsuarioService
         _validatorCreate = validatorCreate;
     }
 
-    public async Task<ServiceResult> AddAsync(UsuarioCreate dados) 
+    public async Task<ServiceResult> AddAsync(CreateUsuario dados) 
     {
         long newId = 0;
 
@@ -86,4 +85,15 @@ public class UsuarioService : ServiceBase, IUsuarioService
         
         return base.SuccessedViewAll(usuarios, "Usuário", usuarios.Count());
     }
+
+    //public async Task<ServiceResult> UpdateAsync(UsuarioUpdate dados)
+    //{
+    //    ValidationResult result = await _validatorCreate.ValidateAsync(dados);
+
+    //    if (!result.IsValid)
+    //    {
+    //        return base.ErrorValidationAdd(result, "Usuário");
+    //    }
+
+    //}
 }

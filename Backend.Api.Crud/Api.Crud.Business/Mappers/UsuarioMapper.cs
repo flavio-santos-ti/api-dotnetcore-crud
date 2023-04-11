@@ -1,7 +1,5 @@
 ﻿using Api.Crud.Domain.Pessoa;
 using Api.Crud.Domain.Usuario;
-using Api.Crud.Domain.Usuario.Create;
-using Api.Crud.Domain.Usuario.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,8 +12,8 @@ public class UsuarioMapper : AutoMapper.Profile
 {
     public UsuarioMapper()
     {
-        CreateMap<Usuario, UsuarioCreate>().ReverseMap();
-        CreateMap<Usuario, UsuarioView>().ReverseMap();
-        CreateMap<Pessoa, UsuarioCreate>().ReverseMap();
+        CreateMap<Usuario, CreateUsuario>().ReverseMap();
+        CreateMap<Usuario, ViewUsuario>().ReverseMap();
+        CreateMap<Pessoa, CreateUsuario>().ReverseMap();
     }
 }
