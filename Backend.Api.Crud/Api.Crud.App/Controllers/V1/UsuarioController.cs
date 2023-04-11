@@ -28,13 +28,8 @@ public class UsuarioController : ControllerBase
     public async Task<IActionResult> GetViewAllAsync([FromQuery] int skip, [FromQuery] int take)
     {
         var usuario = await _service.GetViewAllAsync(skip, take);
-        
-        if (!usuario.Successed)
-        {
-            return BadRequest(usuario);
-        }
-        
-        return Ok(usuario);
+
+        return (!usuario.Successed) ? BadRequest(usuario) : Ok(usuario);
     }
 
 }
