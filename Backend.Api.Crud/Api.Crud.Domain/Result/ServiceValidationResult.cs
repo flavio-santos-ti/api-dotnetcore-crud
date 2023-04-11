@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Api.Crud.Domain.Result;
 
-public class ResultValidationItemError
+public class ServiceValidationResult
 {
     public string PropertyName { get; set; }
     public string ErrorMessage { get; set; }
