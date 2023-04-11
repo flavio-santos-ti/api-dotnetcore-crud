@@ -50,6 +50,9 @@ public class UsuarioService : ServiceBase, IUsuarioService
             newPessoa.Tipo = "F";
             await _pessoaService.AddAsync(newPessoa);
             newId = newPessoa.Id;
+        } else
+        {
+            newId = pessoa.Id;
         }
         
         var usuario = await _usuarioRepository.GetAsync(b => b.Login == dados.Login.Trim());
@@ -64,6 +67,10 @@ public class UsuarioService : ServiceBase, IUsuarioService
             newUsuario.DataAlteracao = DateTime.Now;
             await _usuarioRepository.AddAsync(newUsuario);
             await _unitOfWork.SaveAsync();
+        } else
+        {
+            await _unitOfWork.RolbackAsync();
+            return base.ErrorAdd($"O email {dados.Login.Trim()} já está sendo utilizado.", "Usuário");
         }
 
         await _unitOfWork.CommitAsync();
@@ -71,5 +78,12 @@ public class UsuarioService : ServiceBase, IUsuarioService
         var usuarioView = await _usuarioRepository.GetViewAsync(newId);
 
         return base.SuccessedAdd(usuarioView, "Usuário");
+    }
+
+    public async Task<ServiceResult> GetViewAllAsync(int skip, int take)
+    {
+        var usuarios = await _usuarioRepository.GetViewAllAsync(skip, take);
+        
+        return base.SuccessedViewAll(usuarios, "Usuário", usuarios.Count());
     }
 }

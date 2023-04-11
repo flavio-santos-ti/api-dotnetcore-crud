@@ -19,9 +19,22 @@ public class UsuarioController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> IncluirAsync(UsuarioCreate dados)
     {
-        var pessoa = await _service.AddAsync(dados);
+        var usuario = await _service.AddAsync(dados);
+        
+        return Ok(usuario);
+    }
 
-        return Ok(pessoa);
+    [HttpGet]
+    public async Task<IActionResult> GetViewAllAsync([FromQuery] int skip, [FromQuery] int take)
+    {
+        var usuario = await _service.GetViewAllAsync(skip, take);
+        
+        if (!usuario.Successed)
+        {
+            return BadRequest(usuario);
+        }
+        
+        return Ok(usuario);
     }
 
 }

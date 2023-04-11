@@ -16,4 +16,5 @@ public interface IUsuarioRepository
     Task DeleteAsync(Usuario usuario);
     Task<Usuario> GetAsync(Expression<Func<Usuario, bool>> condicao);
     Task<UsuarioView> GetViewAsync(long id);
+    Task<IEnumerable<UsuarioView>> GetViewAllAsync(int skip, int take);
 }

@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Api.Crud.Domain.Result;
 
-public class Result<T>
+public class ResultSuccessed
 {
     public bool Successed { get; set; }
     public string Name { get; set; }
     public string Message { get; set; }
-    public T Data { get; set; }
+    public object Data { get; set; }
 }

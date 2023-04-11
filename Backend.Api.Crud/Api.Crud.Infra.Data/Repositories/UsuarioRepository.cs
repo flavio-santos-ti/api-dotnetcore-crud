@@ -28,7 +28,7 @@ public class UsuarioRepository : RepositoryBase, IUsuarioRepository
 
     public async Task<UsuarioView> GetViewAsync(long id)
     {
-        DatabaseContext context = base.GetContext();  
+        DatabaseContext context = base.GetContext();
 
         var usuarioView = await (
             from usuario in context.Usuarios
@@ -49,4 +49,30 @@ public class UsuarioRepository : RepositoryBase, IUsuarioRepository
             
         return usuarioView;
     }
+
+    public async Task<IEnumerable<UsuarioView>> GetViewAllAsync(int skip, int take)
+    {
+        DatabaseContext context = base.GetContext();
+
+        var usuarioView = await(
+            from usuario in context.Usuarios
+            join pessoa in context.Pessoas on usuario.Id equals pessoa.Id
+            select new UsuarioView
+            {
+                Id = usuario.Id,
+                Nome = pessoa.Nome,
+                Sobrenome = pessoa.Sobrenome,
+                DataNascto = pessoa.DataNascto,
+                Tipo = pessoa.Tipo == "F" ? "Física" : "Jurídica",
+                Login = usuario.Login,
+                DataInclusao = usuario.DataInclusao,
+                DataAlteracao = usuario.DataAlteracao
+            }).AsNoTracking()
+            .Skip(skip)
+            .Take(take)
+            .ToListAsync();
+         
+        return usuarioView;
+    }
+
 }

@@ -2,6 +2,8 @@
 using FluentValidation.Results;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +14,7 @@ namespace Api.Crud.Business.Services.Base;
 public class ServiceBase
 {
 
-    public object SuccessedAdd(object dados, string name) 
+    protected object SuccessedAdd(object dados, string name) 
     {
         var result = new ResultSuccessed();
         result.Successed = true;
@@ -22,7 +24,7 @@ public class ServiceBase
         return result;
     }
 
-    public object ErrorValidationAdd(ValidationResult result, string name)
+    protected object ErrorValidationAdd(ValidationResult result, string name)
     {
         var erros = new List<ResultValidationItemError>();
 
@@ -48,6 +50,25 @@ public class ServiceBase
         
         return resultError;
     }
-    
+
+    protected ServiceResult SuccessedViewAll(object dados, string name, int count)
+    {
+        string message = $"{count} registro(s) encontrado(s).";
+        var result = new ServiceResult();
+        result.Successed = true;
+        result.Name = name;
+        result.Message = message;
+        result.Data = dados; 
+        return result;
+    }
+
+    protected object ErrorAdd(string message, string name)
+    {
+        var result = new ServiceResult();
+        result.Name = name;
+        result.Message = message;
+
+        return result;
+    }
 
 }

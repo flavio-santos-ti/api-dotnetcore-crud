@@ -1,11 +1,14 @@
 using Api.Crud.Business.Interfaces;
 using Api.Crud.Business.Services;
+using Api.Crud.Domain.Create;
 using Api.Crud.Infra.Data.Context;
 using Api.Crud.Infra.Data.Interfaces;
 using Api.Crud.Infra.Data.Repositories;
 using Api.Crud.Infra.Data.UnitOfWork;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using FluentValidation;
+using Api.Crud.Business.Validator.Usuario;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,6 +39,8 @@ builder.Services.AddApiVersioning(p =>
     p.ReportApiVersions = true;
     p.AssumeDefaultVersionWhenUnspecified = true;
 });
+
+builder.Services.AddValidatorsFromAssemblyContaining<UsuarioCreateValidator>();
 
 //--------------------------------------------
 
