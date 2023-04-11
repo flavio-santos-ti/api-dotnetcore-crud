@@ -6,5 +6,6 @@ namespace Api.Crud.Business.Interfaces;
 public interface IUsuarioService
 {
     Task<ServiceResult> AddAsync(CreateUsuario dados);
+    Task<ServiceResult> UpdateAsync(UpdateUsuario dados);
     Task<ServiceResult> GetViewAllAsync(int skip, int take);
 }

@@ -15,5 +15,6 @@ public class UsuarioMapper : AutoMapper.Profile
         CreateMap<Usuario, CreateUsuario>().ReverseMap();
         CreateMap<Usuario, ViewUsuario>().ReverseMap();
         CreateMap<Pessoa, CreateUsuario>().ReverseMap();
+        CreateMap<Pessoa, UpdateUsuario>().ReverseMap();
     }
 }

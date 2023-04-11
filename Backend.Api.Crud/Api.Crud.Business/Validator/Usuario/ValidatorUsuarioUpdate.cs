@@ -12,15 +12,20 @@ public class ValidatorUsuarioUpdate : AbstractValidator<UpdateUsuario>
 {
     public ValidatorUsuarioUpdate()
     {
+        RuleFor(x => x.Id)
+            .NotNull().WithMessage("Faltando.")
+            .NotEmpty().WithMessage("Deve ser informado.")
+            .NotEqual(0).WithMessage("Valor Inválido");
+
         RuleFor(x => x.Nome)
             .NotNull().WithMessage("Faltando.")
             .NotEmpty().WithMessage("Deve ser informado.")
-            .NotEqual("string").WithMessage("inválido.");
+            .NotEqual("string").WithMessage("Conteúdo Inválido.");
 
         RuleFor(x => x.Sobrenome)
             .NotNull().WithMessage("faltando.")
             .NotEmpty().WithMessage("Deve ser informado.")
-            .NotEqual("string").WithMessage("inválido.");
+            .NotEqual("string").WithMessage("Conteúdo inválido.");
 
         RuleFor(x => x.DataNascto)
                 .Must(ValidarData).WithMessage("Deve ser informado.");

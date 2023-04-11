@@ -11,5 +11,6 @@ namespace Api.Crud.Business.Interfaces;
 public interface IPessoaService
 {
     Task AddAsync(Pessoa dados);
+    Task UpdateAsync(Pessoa dados);
     Task<Pessoa> GetAsync(Expression<Func<Pessoa, bool>> condicao);
 }

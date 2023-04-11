@@ -34,5 +34,12 @@ public class PessoaService : IPessoaService
         await _unitOfWork.SaveAsync();
     }
 
+    public async Task UpdateAsync(Pessoa dados)
+    {
+        dados.DataAlteracao = DateTime.Now;
+        await _pessoaRepository.UpdateAsync(dados);
+    }
+
     public async Task<Pessoa> GetAsync(Expression<Func<Pessoa, bool>> condicao) => await _pessoaRepository.GetAsync(condicao);
+
 }

@@ -18,14 +18,16 @@ public class UsuarioService : ServiceBase, IUsuarioService
     private readonly IUnitOfWork _unitOfWork;
     private readonly IUsuarioRepository _usuarioRepository;
     private readonly IValidator<CreateUsuario> _validatorCreate;
+    private readonly IValidator<UpdateUsuario> _validatorUpdate;
 
-    public UsuarioService(IPessoaService pessoaService, IMapper mapper, IUnitOfWork unitOfWork, IUsuarioRepository usuarioRepository, IValidator<CreateUsuario> validatorCreate)
+    public UsuarioService(IPessoaService pessoaService, IMapper mapper, IUnitOfWork unitOfWork, IUsuarioRepository usuarioRepository, IValidator<CreateUsuario> validatorCreate, IValidator<UpdateUsuario> validatorUpdate)
     {
         _pessoaService = pessoaService;
         _mapper = mapper;
         _unitOfWork = unitOfWork;
         _usuarioRepository = usuarioRepository;
         _validatorCreate = validatorCreate;
+        _validatorUpdate = validatorUpdate;
     }
 
     public async Task<ServiceResult> AddAsync(CreateUsuario dados) 
@@ -86,14 +88,47 @@ public class UsuarioService : ServiceBase, IUsuarioService
         return base.SuccessedViewAll(usuarios, "Usuário", usuarios.Count());
     }
 
-    //public async Task<ServiceResult> UpdateAsync(UsuarioUpdate dados)
-    //{
-    //    ValidationResult result = await _validatorCreate.ValidateAsync(dados);
+    public async Task<ServiceResult> UpdateAsync(UpdateUsuario dados)
+    {
+        ValidationResult result = await _validatorUpdate.ValidateAsync(dados);
 
-    //    if (!result.IsValid)
-    //    {
-    //        return base.ErrorValidationAdd(result, "Usuário");
-    //    }
+        if (!result.IsValid)
+        {
+            return base.ErrorValidationUpdate(result, "Usuário");
+        }
 
-    //}
+        await _unitOfWork.BeginTransactionAsync();
+
+        var pessoa = await _pessoaService.GetAsync(b => b.Id == dados.Id);
+
+        if (pessoa == null)
+        {
+            return base.ErrorAdd($"Usuário não encontrado.", "Usuário");
+        }
+        
+        Pessoa updatePessoa = _mapper.Map<Pessoa>(pessoa);
+        updatePessoa.Nome = dados.Nome.Trim();
+        updatePessoa.Sobrenome = dados.Sobrenome.Trim();
+        updatePessoa.DataNascto = dados.DataNascto;
+
+        await _pessoaService.UpdateAsync(updatePessoa);
+        await _unitOfWork.SaveAsync();
+
+        var usuario = await _usuarioRepository.GetAsync(b => b.Id == dados.Id);
+
+        if (usuario == null)
+        {
+            return base.ErrorAdd($"Usuário não encontrado.", "Usuário");
+        }
+
+        usuario.DataAlteracao = DateTime.Now;
+        await _usuarioRepository.UpdateAsync(usuario);
+        await _unitOfWork.SaveAsync();
+
+        await _unitOfWork.CommitAsync();
+
+        var usuarioView = await _usuarioRepository.GetViewAsync(dados.Id);
+
+        return base.SuccessedAdd(usuarioView, "Usuário");
+    }
 }

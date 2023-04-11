@@ -64,6 +64,35 @@ public class ServiceBase
         return resultError;
     }
 
+    protected ServiceResult ErrorValidationUpdate(ValidationResult result, string name)
+    {
+        var erros = new List<ServiceValidationResult>();
+
+        foreach (var error in result.Errors)
+        {
+            erros.Add(
+                new ServiceValidationResult
+                {
+                    PropertyName = error.PropertyName,
+                    ErrorMessage = error.ErrorMessage
+                }
+            );
+        };
+
+        var substantivo = name;
+
+        string artigoIndefinido = substantivo.Substring(substantivo.Length - 1, 1) == "o" ? "um" : "uma";
+
+        ServiceResult resultError = new();
+        resultError.Successed = false;
+        resultError.Name = name;
+        resultError.Message = $"Erro ao tentar alterar {artigoIndefinido} " + name + ".";
+        resultError.Data = erros;
+
+        return resultError;
+    }
+
+
     protected ServiceResult ErrorAdd(string message, string name)
     {
         var result = new ServiceResult();

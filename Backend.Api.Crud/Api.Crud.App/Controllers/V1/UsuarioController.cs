@@ -32,4 +32,12 @@ public class UsuarioController : ControllerBase
         return (!usuario.Successed) ? BadRequest(usuario) : Ok(usuario);
     }
 
+    [HttpPut]
+    public async Task<IActionResult> UpdateAsync(UpdateUsuario dados)
+    {
+        var usuario = await _service.UpdateAsync(dados);
+
+        return (!usuario.Successed) ? BadRequest(usuario) : Ok(usuario);
+    }
+
 }

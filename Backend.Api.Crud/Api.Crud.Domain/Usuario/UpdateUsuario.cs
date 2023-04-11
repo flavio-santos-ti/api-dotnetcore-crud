@@ -8,6 +8,7 @@ namespace Api.Crud.Domain.Usuario;
 
 public class UpdateUsuario
 {
+    public long Id { get; set; }
     public string Nome { get; set; }
     public string Sobrenome { get; set; }
     public DateTime DataNascto { get; set; }
