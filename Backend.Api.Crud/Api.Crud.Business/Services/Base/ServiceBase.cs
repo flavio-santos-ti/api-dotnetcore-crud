@@ -14,7 +14,7 @@ namespace Api.Crud.Business.Services.Base;
 public class ServiceBase
 {
 
-    protected object SuccessedAdd(object dados, string name) 
+    protected ServiceResult SuccessedAdd(object dados, string name) 
     {
         var result = new ServiceResult();
         result.Successed = true;
@@ -35,7 +35,7 @@ public class ServiceBase
         return result;
     }
 
-    protected object ErrorValidationAdd(ValidationResult result, string name)
+    protected ServiceResult ErrorValidationAdd(ValidationResult result, string name)
     {
         var erros = new List<ServiceValidationResult>();
 
@@ -55,6 +55,7 @@ public class ServiceBase
         string artigoIndefinido = substantivo.Substring(substantivo.Length - 1, 1) == "o" ? "um" : "uma";  
 
         ServiceResult resultError = new();
+        resultError.Successed = false;
         resultError.Name = name;
         resultError.Message = $"Erro ao tentar adicionar {artigoIndefinido} " + name + ".";
         resultError.Data = erros;
@@ -62,7 +63,7 @@ public class ServiceBase
         return resultError;
     }
 
-    protected object ErrorAdd(string message, string name)
+    protected ServiceResult ErrorAdd(string message, string name)
     {
         var result = new ServiceResult();
         result.Name = name;

@@ -29,7 +29,7 @@ public class UsuarioService : ServiceBase, IUsuarioService
         _validatorCreate = validatorCreate;
     }
 
-    public async Task<object> AddAsync(UsuarioCreate dados) 
+    public async Task<ServiceResult> AddAsync(UsuarioCreate dados) 
     {
         long newId = 0;
 

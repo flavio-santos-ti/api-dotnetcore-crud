@@ -17,11 +17,11 @@ public class UsuarioController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> IncluirAsync(UsuarioCreate dados)
+    public async Task<IActionResult> AddAsync(UsuarioCreate dados)
     {
         var usuario = await _service.AddAsync(dados);
         
-        return Ok(usuario);
+        return (!usuario.Successed) ? BadRequest(usuario) : Ok(usuario);
     }
 
     [HttpGet]
